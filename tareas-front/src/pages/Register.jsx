@@ -11,6 +11,7 @@ const register = () => {
   })
 
   const {name, email, password, password2} = fromData
+
   const onChange = (e)=>{
     setFromData((prevState) =>({
       ...prevState, 
@@ -33,6 +34,7 @@ const register = () => {
               type="text"
               className="form-control"
               id='name'
+              name="name"
               value={name}
               placeholder="Ingresa tu nombre"
               onChange={onChange}
