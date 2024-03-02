@@ -20,6 +20,9 @@ const initialState = {
     message: ''
 }
 
+// registrar un usuario 
+
+
 //  exportar creando un Slice 
 export const authSlice = createSlice({
     // como se llamara el Slice
