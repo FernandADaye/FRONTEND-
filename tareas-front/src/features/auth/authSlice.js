@@ -21,7 +21,16 @@ const initialState = {
 }
 
 // registrar un usuario 
-
+// como paramento createAsynThunk va a tener 1 el prefijo, como se va a poder identificar, el nombre del Slice 
+//  como paramento 2 va a tener la funcion en si junto con sus datos 
+export const register =  createAsynThunk( 'auth/register', async( user, thunkAPI) => {
+    try {
+        return await authService.register(true)
+        
+    } catch (error) {
+        
+    }
+})
 
 //  exportar creando un Slice 
 export const authSlice = createSlice({
