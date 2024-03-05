@@ -16,6 +16,16 @@ const Register = () => {
 
   const {name, email, password, password2} = fromData
 
+  // usar los imports, que es para saber por cual pagina navegamos y el dispatch para mandar a llamar a la funcion 
+
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+//  desustructurar todos los elementos del estado global 
+//  useSelector es una herramienta poderosa para acceder a datos del estado global de Redux 
+// y sale state.auth porqeu asi es como se llama el Slice global 
+const { user, isLoading, isSucces, isError, message} = useSelector((state) => state.auth)
+
+
   const onChange = (e)=>{
     setFromData((prevState) =>({
       ...prevState, 
@@ -25,6 +35,13 @@ const Register = () => {
 
   const onSubmit = (e) =>{
     e.preventDefault()
+
+    if( password !== password2){
+      // toast es algo que instale solo para lo visual en las alertas 
+      toast.error ('La contraseña con es la misma rata')
+    } else{
+      //  en caso de que se registre de forma adecuda entonces debera pasarle los datos del usuario 
+    }
   }
   
   return (
