@@ -41,6 +41,13 @@ const { user, isLoading, isSucces, isError, message} = useSelector((state) => st
       toast.error ('La contraseña con es la misma rata')
     } else{
       //  en caso de que se registre de forma adecuda entonces debera pasarle los datos del usuario 
+      const userData= {
+        //  mas adelante el backen se va a encargar de recibir el passward como texto para despues el hash y ponerle sal
+        name, email, password
+      }
+      //  mandar a llamar a la funcion Dispatch y pasarle los datos del usuario 
+      //  dispatch manda a llamar a register de authSlice, a su vez register manda a llamar a ottra funcion que hace coneccion directa con BD
+      dispatch(register(userData))
     }
   }
   
