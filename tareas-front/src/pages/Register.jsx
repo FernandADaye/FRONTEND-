@@ -4,6 +4,8 @@ import {FaUser} from 'react-icons/fa'
 import { useNavigate } from "react-router-dom"
 import { toast } from 'react-toastify'
 import {reset, register} from '../features/auth/authSlice'
+import Spinner from '../pages/components/Spinner'
+
 
 const Register = () => {
   
@@ -23,7 +25,7 @@ const Register = () => {
 //  desustructurar todos los elementos del estado global 
 //  useSelector es una herramienta poderosa para acceder a datos del estado global de Redux 
 // y sale state.auth porqeu asi es como se llama el Slice global 
-const { user, isLoading, isSucces, isError, message} = useSelector((state) => state.auth)
+const { user, isLoading, isSuccess, isError, message} = useSelector((state) => state.auth)
 
 
   const onChange = (e)=>{
@@ -50,7 +52,26 @@ const { user, isLoading, isSucces, isError, message} = useSelector((state) => st
       dispatch(register(userData))
     }
   }
-  
+  // useEffect se ejecuta después de cada renderización del componente. que permite interactuar con el ciclo de vida del componente funcional en React, facilitando la realización de efectos secundarios y la gestión de su limpieza.
+  useEffect(() => {
+
+    if (isError) {
+      toast.error(message)
+  }
+
+  if (isSuccess) {
+      navigate('/login')
+  }
+
+  dispatch(reset())
+
+    // las dependencias se encuentrar en forma de array, en caso de que alguna de estas cosas cambien es cuando useEffect se activara 
+  }, [user, isError, isSuccess, message, navigate, dispatch])
+
+  if (isLoading) {
+    return <Spinner />
+  }
+
   return (
     <>
       <section className="heading">
