@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react"
+import { useSelector, useDispatch } from "react-redux"
 import {FaUser} from 'react-icons/fa'
+import { useNavigate } from "react-router-dom"
+import { toast } from 'react-toastify'
+import {reset, register} from '../features/auth/authSlice'
 
-const register = () => {
+const Register = () => {
   
   const [fromData, setFromData] = useState({
     name: '',
@@ -87,4 +91,4 @@ const register = () => {
   )
 }
 
-export default register
+export default Register
