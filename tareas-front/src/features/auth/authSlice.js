@@ -6,6 +6,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const user = JSON.parse(localStorage.getItem("user"));
 // importar register
 import authService from "./authService";
+import login from "../../pages/Login";
 
 // crear un estado inical para nuestra rebanada ( para nuestro Slice ), este es un objeto
 
@@ -40,6 +41,7 @@ export const register = createAsyncThunk(
     }
 }
 );
+
 
 //  exportar creando un Slice
 export const authSlice = createSlice({
@@ -76,6 +78,21 @@ reducers: {
                 state.isLoading= false
                 state.isError= true 
                 // este es el mensaje que se debe devolver en caso de que haya un error (osea esto ❌)
+                state.message= accion.payload
+            })
+            .addCase( login.pending, (state) =>{
+                state.isLoading = true
+            } )
+            .addCase( login.fulfilled, ( state, accion ) =>{
+                state.isLoading = false 
+                state.isSuccess = true
+                // el accion payload es lo que va a debolver el Backend (osea 
+                state.user= accion.payload
+            } )
+            .addCase( login.rejected, (state) =>{
+                state.isLoading= false
+                state.isError= true 
+                // este es el mensaje que se debe devolver en caso de que haya
                 state.message= accion.payload
             })
     },
