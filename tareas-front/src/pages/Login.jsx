@@ -30,6 +30,7 @@ const Login = ()=> {
       navigate('/')
     }
     dispatch(reset())
+
   }, [user, isError, isSuccess, message, navigate, dispatch] )
 
   const onChange = (e)=>{
@@ -47,7 +48,9 @@ const Login = ()=> {
     }
     dispatch(login(userData))
   }
-  
+  if (isLoading){
+    return <Spinner/>
+  }
 
   return (
     <>

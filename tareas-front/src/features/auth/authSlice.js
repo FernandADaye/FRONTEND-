@@ -80,32 +80,32 @@ export const authSlice = createSlice({
       .addCase(register.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(register.fulfilled, (state, accion) => {
+      .addCase(register.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         // el accion payload es lo que va a debolver el Backend (osea esto 🔰)
-        state.user = accion.payload;
+        state.user = action.payload;
       })
       .addCase(register.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
         // este es el mensaje que se debe devolver en caso de que haya un error (osea esto ❌)
-        state.message = accion.payload;
+        state.message = action.payload;
       })
       .addCase(login.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(login.fulfilled, (state, accion) => {
+      .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         // el accion payload es lo que va a debolver el Backend (osea
-        state.user = accion.payload;
+        state.user = action.payload;
       })
       .addCase(login.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
         // este es el mensaje que se debe devolver en caso de que haya
-        state.message = accion.payload;
+        state.message = action.payload;
       });
   },
 });
