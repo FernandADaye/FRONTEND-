@@ -10,8 +10,8 @@ const Header = () => {
         </div>
                 <ul>
                     <li>
-                        <Link to ='/login'>
-                            <FaSignInAlt/> Login 
+                        <Link to ='/Login'>
+                            <FaSignInAlt/> login 
                         </Link>
                     </li>
                 <li>
