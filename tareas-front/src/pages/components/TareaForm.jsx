@@ -32,8 +32,11 @@ return (
                     onChange={(e)=> setDescripcion(e.target.value)}
                     />
                 </div>
-                
-
+                <div className="form-group">
+                    <button type='submit' className="btr btn-block">
+                        Crear Tarea 
+                    </button>
+                </div>
             </from>
         </section>
     </>
