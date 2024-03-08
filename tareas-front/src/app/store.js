@@ -2,10 +2,12 @@
 // importar unas cosas y tambien importar el slice 
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer  from "../features/auth/authSlice";
+import tareaReducer from "../features/tareas/tareasSlice"
 
 // se va a importar Store junto con un metodo de configuracion, el cual es un objeto 
 export const store = configureStore({
     reducer: {
-        auth: authReducer
+        auth: authReducer,
+        tarea: tareaReducer 
     }
 })

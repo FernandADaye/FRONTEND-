@@ -20,3 +20,5 @@ export const tareaSlice = createSlice({
 })
 
 export const {reset} = tareaSlice.actions
+
+export default tareaSlice.reducer;
