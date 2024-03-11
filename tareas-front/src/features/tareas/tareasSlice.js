@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import tareaService from "./tareasServices";
 const initialState = {
-  taras: [],
+  tareas: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -14,7 +14,7 @@ export const crearTarea = createAsyncThunk(
   async (tareaData, thunkAPI) => {
     try {
       // tambien recuerda que paa ingresar una tarea debes estar logeado, osea que tengas el token, asi que le bedemos pasar que es un token y que lo reconozca
-      const token = thunkAPI.getState().auth.user.token
+      const token = thunkAPI.getState().auth.user.token;
       // cuando todo este bien nos retornara la funcion de services (tambien usa el token que sacamos)
       return await tareaService.crearTarea(tareaData, token);
     } catch (error) {
@@ -35,7 +35,27 @@ export const tareaSlice = createSlice({
   reducer: {
     reset: (state) => initialState,
   },
-  extraReducers: () => {},
+  extraReducers: (builder) => {
+    builder
+      // este es en caso de que este pendiente
+      .addCase(crearTarea.pending, (state) => {
+        state.isLoading = true;
+      })
+      // en caso de que sea bien recibido 
+      .addCase(crearTarea.fulfilled, (state, actions) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        // como es array se usa el push 
+        // accion payloar es lo que va a recibir lo que devuelva como respuesta 
+        state.tareas.push(actions.payload)
+      })
+      // esto es cuando no salio bien 
+      .addCase(crearTarea.rejected, (state, accion)=>{
+        state.isLoading= false
+        state.isError= true
+        state.message= actions.payload
+      });
+  },
 });
 
 export const { reset } = tareaSlice.actions;
