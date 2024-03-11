@@ -20,9 +20,9 @@ const login = async (userData) => {
   //  La respuesta que dara el Backend
   //  esto ya va de la mando con los metodos que se usan para CRUD, de
   // y como segundo paramatro los datos que se le van a pasar
-  const response = await axios.post(API_URL + "login", userData);
+  const response = await axios.post(API_URL + 'login', userData);
   if (response.data) {
-    localStorage.setItem("user", JSON.stringify(response.data));
+    localStorage.setItem('user', JSON.stringify(response.data));
   }
   //  mencionarle que va a debolver una respuesta
   return response.data;
