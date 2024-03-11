@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import tareaService from "./tareasServices";
 const initialState = {
   taras: [],
   isError: false,
