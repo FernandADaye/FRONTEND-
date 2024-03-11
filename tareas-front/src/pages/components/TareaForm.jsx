@@ -24,8 +24,8 @@ setDescripcion('')
 return (
     <>
     {/* lo que se debolvera aqui es un formulario en el que se podran crear nuevas tareas  */}
-        <section className='from'>
-            <from onSubmit={onSubmit}>
+        <section className='form'>
+            <form onSubmit={onSubmit}>
                 <div className='form-group'>
                     <label htmlFor="descripcion"> Descripcion </label>
                     {/* al ingresar los datos debe reconocer que tiene que tener datos de la misma bd  */}
@@ -43,10 +43,10 @@ return (
                         Crear Tarea 
                     </button>
                 </div>
-            </from>
+            </form>
         </section>
     </>
-  )
+)
 }
 
 export default TareaForm

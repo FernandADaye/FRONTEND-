@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Default } from "react-toastify/dist/utils";
 
 const API_URL = "https://nervous-dove-vest.cyclic.app/tareas";
 
@@ -21,7 +20,7 @@ const crearTarea = async (tareaData, token) => {
 };
 
 const tareaService = {
-    tareaService
+    crearTarea
 };
 
 export default tareaService
