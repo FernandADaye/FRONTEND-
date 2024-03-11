@@ -2,7 +2,7 @@
 import axios from "axios";
 
 //  crear una cosntante con el url de mi api
-const API_URL = "https://nervous-dove-vest.cyclic.app/users";
+const API_URL = 'https://nervous-dove-vest.cyclic.app/users'
 
 // hacer la peticon al backend para crear un usuario
 //  como parametro tendra los datos del usuario
