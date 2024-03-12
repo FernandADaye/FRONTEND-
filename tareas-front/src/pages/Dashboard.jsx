@@ -2,15 +2,40 @@ import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import TareaForm from "../pages/components/TareaForm"
+import Spinner from "../pages/components/Spinner"
+import { getTareas, reset } from "../features/tareas/tareasSlice"
 const Dashboard = () => {
+
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
   const {user} = useSelector((state)=> state.auth)
+  const {tareas, isLoading, isError, isSuccess, message  } = useSelector((state)=> state.tarea)
+
   useEffect(()=>{
+
+    if (isError) {
+      console.log(message);
+    }
+
+
+
     if(!user){
       navigate('/login')
     }
-  }, [user, navigate])
+
+    dispatch(getTareas())
+    return () => {
+      dispatch(reset())
+    }
+
+
+  }, [user, navigate, isError, message, dispatch])
+
+if (isLoading){
+  return <Spinner/>
+}
+
   return (
     <>
     <section className="heading"> 
