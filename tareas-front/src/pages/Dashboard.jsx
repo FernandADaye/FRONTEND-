@@ -46,6 +46,20 @@ if (isLoading){
     </section>
     {/* aqui es donde se comienza  aver el formulario para crear una tarea */}
     <TareaForm/>
+    <section className="content">
+      {/* si el numero de tareas es mayor a 0 entonces se van amostrar y si no que mande un mensaje qeu qeu no hay tareas que mostrar  */}
+    {
+      tareas.length > 0 ?(
+        <div className="tareas">
+{/* va a recorrer el array de las tareas */}
+      {tareas.map((tarea) => (
+        <TareaItem key={tarea._id} tarea={tarea} />
+      ))}
+        </div>
+      ):(
+        <h3> no hay tarea huevo🙄</h3>
+      )} 
+    </section>
     </>
     )
 }
