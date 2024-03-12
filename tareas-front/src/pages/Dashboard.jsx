@@ -44,7 +44,7 @@ if (isLoading){
       <h3> Binvenido {user && user.name}</h3>
       <p>Dashboardde tareas </p>
     </section>
-    {/* aqui es donde se comienza  aver el formulario para crear una tarea */}
+    {/* aqui es donde se comienza  aver el formulario  para crear una tarea */}
     <TareaForm/>
     <section className="content">
       {/* si el numero de tareas es mayor a 0 entonces se van amostrar y si no que mande un mensaje qeu qeu no hay tareas que mostrar  */}

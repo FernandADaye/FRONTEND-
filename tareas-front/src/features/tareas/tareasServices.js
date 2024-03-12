@@ -30,9 +30,22 @@ const getTareas = async (token) => {
   return response.data;
 };
 
+// borrar tarea
+const deleteTarea = async (token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.delete(API_URL + tareaData, tareaData, config);
+
+  return response.data;
+};
+
 const tareaService = {
   crearTarea,
   getTareas,
+  deleteTarea
 };
 
 export default tareaService;
