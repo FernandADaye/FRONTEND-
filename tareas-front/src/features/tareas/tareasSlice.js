@@ -19,15 +19,13 @@ export const crearTarea = createAsyncThunk(
       return await tareaService.crearTarea(tareaData, token);
     } catch (error) {
       const menssage =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.menssage ||
-        error.toString();
+        (error.response && error.response.data && error.response.data.message) || error.menssage || error.toString();
       return thunkAPI.rejectWithValue(menssage);
     }
   }
 );
+
+// obtener las tareas del usuario 
 
 export const tareaSlice = createSlice({
   name: "tarea",
