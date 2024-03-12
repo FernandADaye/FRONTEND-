@@ -18,9 +18,21 @@ const crearTarea = async (tareaData, token) => {
 
   return response.data;
 };
+// get tareas
+const getTareas = async (token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.get(API_URL, tareaData, config);
 
-const tareaService = {
-    crearTarea
+  return response.data;
 };
 
-export default tareaService
+const tareaService = {
+  crearTarea,
+  getTareas,
+};
+
+export default tareaService;

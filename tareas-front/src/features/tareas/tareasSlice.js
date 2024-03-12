@@ -19,13 +19,30 @@ export const crearTarea = createAsyncThunk(
       return await tareaService.crearTarea(tareaData, token);
     } catch (error) {
       const menssage =
-        (error.response && error.response.data && error.response.data.message) || error.menssage || error.toString();
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.menssage ||
+        error.toString();
       return thunkAPI.rejectWithValue(menssage);
     }
   }
 );
 
-// obtener las tareas del usuario 
+// obtener las tareas del usuario (get tareas)
+// los parametos son 0 y para que el callBack (thunkAPI) no lo interprete como parametro solo pondre un guion bajo
+export const getTareas = createAsyncThunk("tareas/get", async (_, thunkAPI) => {
+  try {
+    const token = thunkAPI.getState().auth.user.token;
+    return await tareaService.getTareas(token);
+  } catch (error) {
+    const menssage =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.menssage ||
+      error.toString();
+    return thunkAPI.rejectWithValue(menssage);
+  }
+});
 
 export const tareaSlice = createSlice({
   name: "tarea",
@@ -39,22 +56,40 @@ export const tareaSlice = createSlice({
       .addCase(crearTarea.pending, (state) => {
         state.isLoading = true;
       })
-      // en caso de que sea bien recibido 
+      // en caso de que sea bien recibido
       .addCase(crearTarea.fulfilled, (state, actions) => {
         state.isLoading = false;
         state.isSuccess = true;
-        // como es array se usa el push 
-        // accion payloar es lo que va a recibir lo que devuelva como respuesta 
-        state.tareas.push(actions.payload)
+        // como es array se usa el push
+        // accion payloar es lo que va a recibir lo que devuelva como respuesta
+        state.tareas.push(actions.payload);
       })
-      // esto es cuando no salio bien 
-      .addCase(crearTarea.rejected, (state, accion)=>{
-        state.isLoading= false
-        state.isError= true
-        state.message= actions.payload
-      });
+      // esto es cuando no salio bien
+      .addCase(crearTarea.rejected, (state, accion) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = actions.payload;
+      })
+// get tareas
+      .addCase(getTareas.pending, (state) => {
+        state.isLoading = true;
+      })
+      // en caso de que sea bien recibido
+      .addCase(getTareas.fulfilled, (state, actions) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        // como es array se usa el push
+        // accion payloar es lo que va a recibir lo que devuelva como res
+        state.message = actions.payload;
+      })
+      // esto es cuando no salio bien
+      .addCase(getTareas.rejected, (state, accion) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = actions.payload;
+      })
   },
-});
+})
 
 export const { reset } = tareaSlice.actions;
 
